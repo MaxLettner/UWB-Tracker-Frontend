@@ -1,12 +1,8 @@
+import '../styles/ConsoleView.css'
+
 const ConsoleView: React.FC = () => {
   return (
-    <div style={{
-      background: "#0d0d0d",
-      color: "#0f0",
-      padding: "8px",
-      fontFamily: "monospace",
-      overflowY: "auto"
-    }}>
+    <div className='consoleView'>
       &gt; Console ready  
       <br />
       &gt; No errors yet  
@@ -14,4 +10,6 @@ const ConsoleView: React.FC = () => {
   );
 };
 
-export default ConsoleView;
+//not finished yet just sample code
+
+export default ConsoleView

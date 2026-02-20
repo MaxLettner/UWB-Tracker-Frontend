@@ -1,8 +1,8 @@
-import Header from "./components/Header.tsx";
-import ThreeView from "./components/ThreeView.tsx";
-import ConsoleView from "./components/ConsoleView.tsx";
+import Header from "./components/Header.tsx"
+import ThreeView from "./components/ThreeView.tsx"
+import ConsoleView from "./components/ConsoleView.tsx"
 
-import "./App.css";
+import "./App.css"
 
 const App: React.FC = () => {
   return (
@@ -16,4 +16,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default App
