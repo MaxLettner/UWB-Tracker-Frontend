@@ -101,6 +101,8 @@ const ThreeView = forwardRef<ThreeViewHandle, {}>((_props, ref) => {
       renderer.dispose()
       cubeGeo.dispose()
       sphereGeo.dispose()
+      cube.material.dispose() 
+      sphere.material.dispose()
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement)
       }
