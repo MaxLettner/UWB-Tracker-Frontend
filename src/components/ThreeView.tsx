@@ -6,7 +6,7 @@ export interface ThreeViewHandle {
   updateTargetPosition: (x: number, y: number, z: number) => void
 }
 
-const ThreeView = forwardRef<ThreeViewHandle, {}>((props, ref) => {
+const ThreeView = forwardRef<ThreeViewHandle, {}>((_props, ref) => {
   const containerRef = useRef<HTMLDivElement | null>(null)
   
   //internal refs for Three.js objects
