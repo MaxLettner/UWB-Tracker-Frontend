@@ -33,12 +33,12 @@ const ThreeView: React.FC = () => {
     
     const camera = new THREE.OrthographicCamera(-s * aspect, s * aspect, s, -s, 0.1, 1000) //parameters: left, right, top, bottom, near plane, far plane
         
-    camera.position.set(2.5, 2, 2) //position the camera diagonaly to achieve an isometric-style viewpoint
-    camera.lookAt(0, 0, 0)
+    camera.position.set(3, 2.5, 2.5) //position the camera diagonaly to achieve an isometric-style viewpoint
 
     //4. INTERACTIVE CONTROLS
     const controls: OrbitControls = new OrbitControls(camera, renderer.domElement)
-    controls.enableZoom = true
+    controls.target.set(0.5, 0.5, 0.5)
+    controls.enableZoom = false
     
     controls.maxPolarAngle = 1.2 //by setting min and max to the same value vertical tilting is disabled
     controls.minPolarAngle = 1.2
@@ -48,13 +48,23 @@ const ThreeView: React.FC = () => {
     //5. MESH    
     const geometry = new THREE.BoxGeometry(1, 1, 1) //create a standard 1x1x1 cube 
     const edges = new THREE.EdgesGeometry(geometry) //EdgesGeometry extracts only the wireframe edges    
-    
+
     const line = new THREE.LineSegments(
       edges, 
       new THREE.LineBasicMaterial({ color: 0x00ff00, linewidth: 2 })
     ); //create the visual line object with a neon green colorts
 
     scene.add(line)
+
+    line.translateX(0.5)
+    line.translateY(0.5)
+    line.translateZ(0.5)
+
+    // const test = new THREE.Mesh(new THREE.SphereGeometry(0.02), new THREE.MeshBasicMaterial({color: 0xffffff}))
+    // scene.add(test)
+
+    // test.translateZ(-0.15)
+    // test.translateX(-0.67)
 
     // 6. ANIMATION LOOP
     let animationId: number
