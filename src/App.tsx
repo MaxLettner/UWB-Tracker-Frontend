@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import Header from "./components/Header.tsx"
 import ThreeView from "./components/ThreeView.tsx"
 import type { ThreeViewHandle } from "./components/ThreeView.tsx"
 import ConsoleView from "./components/ConsoleView.tsx"
 import * as service from "./services/coordinate.service.ts"
-import * as data from './data/data.ts'
+import type coord from "./services/coordinate.service.ts"
 
 import "./App.css"
 
@@ -12,14 +12,14 @@ const App: React.FC = () => {
   //create a reference to the ThreeView component's methods
   const threeRef = useRef<ThreeViewHandle>(null)
 
+  const[dataView, setDataView] = useState<coord[]>([])
+
   useEffect(() => {
-    const updatePosition = async () => {2
+    const updatePosition = async () => {
       try {
         const currentCoord = await service.getLatestPosition()
 
-        data.setDataList([...data.getDataList(), currentCoord])
-
-        console.log(data.getDataList())
+        setDataView(prevData => [...prevData, currentCoord])
         
         if (threeRef.current) {
           //call the method within the react component
@@ -41,7 +41,7 @@ const App: React.FC = () => {
       <Header />
       <div className="main">
         <ThreeView ref={threeRef} />
-        <ConsoleView />
+        <ConsoleView data={dataView}/>
       </div>
     </div>
   )

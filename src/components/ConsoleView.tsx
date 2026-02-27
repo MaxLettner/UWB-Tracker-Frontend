@@ -1,15 +1,19 @@
+import type coord from "../services/coordinate.service"
 import '../styles/ConsoleView.css'
 
-const ConsoleView: React.FC = () => {
+interface Props{
+  data: coord[]
+}
+
+const ConsoleView = ({data}: Props) => {
   return (
     <div className='consoleView'>
-      &gt; Console ready  
-      <br />
-      &gt; No errors yet  
+      {data.map((c) => {
+        
+        return <>&gt; X: {c.x.toFixed(2)} Y: {c.y.toFixed(2)} Z: {c.z.toFixed(2)} Time: {c.timestamp.slice(11, 23)}<br/></>
+      })}
     </div>
   );
 };
-
-//not finished yet just sample code
 
 export default ConsoleView

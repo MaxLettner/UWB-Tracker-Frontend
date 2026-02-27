@@ -51,7 +51,7 @@ const ThreeView = forwardRef<ThreeViewHandle, {}>((_props, ref) => {
     const cubeEdges = new THREE.EdgesGeometry(cubeGeo)
     const cube = new THREE.LineSegments(
       cubeEdges,
-      new THREE.LineBasicMaterial({ color: 0x00ff00, linewidth: 2 })
+      new THREE.LineBasicMaterial({ color: 0x00a000, linewidth: 3 })
     )
     // Align corner to 0,0,0
     cube.translateX(0.5)
@@ -63,7 +63,7 @@ const ThreeView = forwardRef<ThreeViewHandle, {}>((_props, ref) => {
     const sphereGeo = new THREE.SphereGeometry(0.03)
     const sphere = new THREE.Mesh(
       sphereGeo, 
-      new THREE.MeshBasicMaterial({ color: 0xffffff })
+      new THREE.MeshBasicMaterial({ color: 0x00ff00 })
     )
     
     // Initial position: "Way off screen"
