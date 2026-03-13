@@ -4,6 +4,7 @@ import { useEffect, useRef, useImperativeHandle, forwardRef } from "react"
 
 export interface ThreeViewHandle {
   updateTargetPosition: (x: number, y: number, z: number) => void
+  setScale: (s: number) => void
 }
 
 const ThreeView = forwardRef<ThreeViewHandle, {}>((_props, ref) => {
@@ -12,15 +13,27 @@ const ThreeView = forwardRef<ThreeViewHandle, {}>((_props, ref) => {
   //internal refs for Three.js objects
   const sphereRef = useRef<THREE.Mesh | null>(null)
 
+  const scaleRef = useRef<number | null>(null)
+
   //expose the movement method to App.tsx
   useImperativeHandle(ref, () => ({
-    //actual method moving the sphere
-    updateTargetPosition(x, y, z) {
-      if (sphereRef.current) {
-        sphereRef.current.position.set(x, y, z)
+  updateTargetPosition(x, y, z) {
+    if (sphereRef.current) {
+      if (scaleRef.current != null) {
+        sphereRef.current.position.set(
+          x / scaleRef.current,
+          y / scaleRef.current,
+          z / scaleRef.current
+        )
+      } else {
+        console.error('No scale was set, yet a coordinate tried to show.')
       }
     }
-  }))
+  },
+  setScale(s) {
+    scaleRef.current = s
+  }
+}))
 
   useEffect(() => {
     const container = containerRef.current
