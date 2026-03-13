@@ -1,5 +1,7 @@
+import React from 'react'
 import type coord from "../services/coordinate.service"
 import '../styles/ConsoleView.css'
+
 
 interface Props{
   data: coord[]
@@ -8,9 +10,9 @@ interface Props{
 const ConsoleView = ({data}: Props) => {
   return (
     <div className='consoleView'>
-      {data.map((c) => {
+      {data.map((c, index) => {
         
-        return <>&gt; X: {c.x.toFixed(2)} Y: {c.y.toFixed(2)} Z: {c.z.toFixed(2)} Time: {c.timestamp.slice(11, 23)}<br/></>
+        return <React.Fragment key={index}>&gt; X: {c.x.toFixed(2)} Y: {c.y.toFixed(2)} Z: {c.z.toFixed(2)} Time: {c.timestamp.slice(11, 23)}<br/></React.Fragment>
       })}
     </div>
   );
